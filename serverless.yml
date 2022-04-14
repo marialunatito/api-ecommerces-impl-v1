@@ -1,0 +1,55 @@
+service: APP-BACKEND-01
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+  excludeDevDependencies: true
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-reducer
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  architecture: arm64
+  stage: ${opt:stage, 'DESA'}
+  region_code: 
+    DESA: UE2
+    TEST: UE2
+    PROD: UE1
+  region: 
+    DESA: us-east-2
+    TEST: us-east-2
+    PROD: us-east-1
+  stackName: UE2ECOMMERCE001
+  timeout: 60
+  memorySize: 512
+  versionFunctions: false
+  tracing:
+    apiGateway: true
+    lambda: true
+  logs:
+    restApi: true
+
+custom:
+  lambda_name: ${self:provider.region_code.${self:provider.stage}}${self:provider.stage}ECOMMERCELMB
+
+functions:
+  OrdersController:
+    handler: src/modules/orders/Controller.handler
+    name: ${self:custom.lambda_name}001
+    tags:
+      NAME: ${self:custom.lambda_name}001
+      ENTORNO: ${self:provider.stage}
+      PROYECTO: AUMENT PROYECT
+      DOMINIO: AUMENT
+      RESPONSABLE:  MARIA LUNA
+      ESTADO_OPERACION: PROYECTO
+      FUNCIONALIDAD: CUSTOMER SALES SUMMARY
+    events:
+      - http:
+          path: /order-customer/sumary
+          method: get
+  
