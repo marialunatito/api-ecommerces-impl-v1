@@ -1,0 +1,9 @@
+{
+    "message": {
+        "title": "Lo sentimos, ocurrió un error",
+        "code": 10101,
+        "description": "No pudimos continuar con el proceso que realizabas. Inténtalo nuevamente.",
+        "technicalDetail": "NOT FOUND - 500 - NOT FOUND /SHOPIFY"
+    },
+    "payload": {}
+}

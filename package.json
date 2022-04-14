@@ -1,0 +1,23 @@
+{
+  "name": "api-ecommerces-impl-v1",
+  "version": "1.0.0",
+  "description": "APIs de negocio del producto Aument",
+  "scripts": {
+    "start": "serverless offline start --stage DESA --functionsFile local",
+    "test": "jest",
+    "test-coverage": "jest --coverage"
+  },
+  "author": "Maria Luna",
+  "license": "NONE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marialunatito/api-ecommerces-impl-v1"
+  },
+  "devDependencies": {
+    "jest": "27.0.4",
+    "jest-cucumber": "3.0.1",
+    "serverless": "~2.69.0",
+    "serverless-offline": "~5.12.0",
+    "serverless-plugin-reducer": "~3.2.4"
+  }
+}
