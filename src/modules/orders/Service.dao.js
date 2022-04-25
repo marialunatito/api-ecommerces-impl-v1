@@ -1,5 +1,6 @@
 const ecommercesData = require('../../core/api/ecommercesData');
 const api = require('../../core/api/invoke');
+const { COMPLETED } = require('../../core/constants');
 const adapter = require('./adapter');
 
 module.exports.processOrders = async (payload) => {
@@ -24,11 +25,11 @@ module.exports.processOrders = async (payload) => {
     orderCustomer.map((customer, i) => {
         adapterEcommers.forEach(order => {
             if(customer.id === order.customer.id){
-                order.products.forEach(product => {
-                    orderCustomer[i].avg_ticket += (product.quantity * product.price);
-                    orderProcess.total_billing += (product.quantity * product.price);
-                })
-                orderCustomer[i].quantity_orders += 1 
+                if (COMPLETED === order.paymentStatus){
+                    orderCustomer[i].avg_ticket += parseFloat(order.price);
+                    orderProcess.total_billing += parseFloat(order.price);
+                    orderCustomer[i].quantity_orders += 1 
+                }
             }
         });
     });

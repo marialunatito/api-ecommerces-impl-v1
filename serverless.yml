@@ -50,6 +50,6 @@ functions:
       FUNCIONALIDAD: CUSTOMER SALES SUMMARY
     events:
       - http:
-          path: /order-customer/sumary
+          path: /order-customer/summary
           method: get
   

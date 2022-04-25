@@ -1,4 +1,8 @@
+const { PAYED, COMPLETED } = require("../../../core/constants");
 
+const statusPage = (status) => {
+    return status === PAYED ? COMPLETED : status;
+}
 module.exports = (payload) => {
     let orderList = [];
     payload.forEach(item => {
@@ -13,7 +17,7 @@ module.exports = (payload) => {
             locationId: item.location_id,
             name: item.name,
             ownerNote:item.owner_note,
-            paymentStatus:item.payment_status,
+            paymentStatus: statusPage(item.payment_status),
             status:item.status,
             subtotal: item.subtotal,
             token: item.token,
